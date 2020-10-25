@@ -1,0 +1,579 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+
+.comments {
+  padding: 0 10px 0 10px;
+  background-color: #F4F4F4;
+}
+
+.comment {
+  line-height: 1.5em;
+  padding: 10px 10px 10px 10px;
+  border-bottom: 1px solid #CBCBCB;
+  background-color: #F4F4F4;
+}
+
+.comment-body p {
+  color: #334A5F;
+  margin-bottom: 0.5rem;
+}
+
+.green-text {
+  color: #00BB9A;
+}
+
+.comment-user-time {
+  display: inline;
+  line-height: 0;
+  margin-bottom: 15px;
+}
+
+.comment-user {
+  display: inline;
+  color: #334A5F;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.comment-on {
+  display: inline;
+  opacity: 0.5;
+  margin-bottom: 0.5rem;
+}
+
+.comment-time {
+  display: inline;
+  opacity: 0.5;
+  margin-bottom: 0.5rem;
+}
+
+.last-comment {
+  border-bottom: none;
+}
+
+.new-comment {
+  margin: 25px 0;
+}
+
+.new-comment input {
+  border: 1px solid #CBCBCB;
+  border-radius: 4px;
+  padding: 10px 20px 10px 20px;
+  align-content: center;
+  vertical-align: middle;
+  width: 100%;
+  line-height: 2em;
+}
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+
+.share-section {
+  display: inline;
+  margin-top: 10px;
+}
+
+.share-section button {
+  border: 1px solid #989898;
+  border-radius: 3px;
+  background-color: #FEFFFF;
+}
+
+.shared-with {
+  color: #989898;
+  display: inline-block;
+  line-height: 0;
+}
+
+.shared-users {
+  display: inline-block;
+  color: #334A5F;
+  font-weight: 400;
+}
+
+.shared-comma {
+  display: inline;
+}
+
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
+#share-screen{
+  padding: 25px;
+  position: absolute;
+  width: 40%;
+  top:50%;
+  left:50%;
+  font-size: 20px;
+  color: black;
+  background-color: white;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
+
+.sharing-heading {
+  padding: 0px 0 10px 0;
+  color: #334A5F;
+  border-bottom: 1px solid #CBCBCB;
+}
+
+.show-users {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px 0 10px 0;
+  color: #334A5F;
+  border-bottom: 1px solid #CBCBCB;
+  line-height: 2.5rem;
+  font-size: 16px;
+}
+
+.user {
+  width: 30%;
+  float: left;
+}
+
+.user:nth-child(3n+2){
+  width: 40%;
+}
+
+.user input[type="checkbox"] {
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #CACACA;
+  border-radius: 2px;
+  box-sizing: border-box;
+  position: relative;
+  box-sizing: content-box ;
+  width: 17px;
+  height: 17px;
+  border-width: 0;
+  transition: all .3s linear;
+}
+
+.user input[type="checkbox"]:focus{
+  outline: 0 none;
+  box-shadow: none;
+}
+
+.user input[type="checkbox"]:checked{
+  background-color: #00B697;
+  border-color:  #ffffff;
+}
+
+.user input[type="checkbox"]:checked:after {
+    opacity: 1;
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 5px;
+    background: transparent;
+    top: 5px;
+    left: 4px;
+    border: 2px solid #ffffff;
+    border-top: none;
+    border-right: none;
+
+    transform: rotate(-45deg);
+}
+
+.option-buttons {
+  padding: 15px 0 0px 0;
+  text-align: right;
+}
+
+#share_savel_button {
+  font-weight: bold;
+  margin: 0 20px 0 20px;
+  padding: 0 20px 0 20px;
+  border: 1px solid #989898;
+  border-radius: 3px;
+  background-color: #FEFFFF;
+}
+#share_cancel_button {
+  border: none;
+  padding: 0;
+  margin: 0 auto;
+  background: none;
+  text-decoration: underline;
+}
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+
+search-box input {
+  background: transparent;
+  border: 1px solid #CBCBCB;
+  border-radius: 4px;
+  vertical-align: middle;
+  line-height: 2em;
+  padding: 0 10px;
+  width: 30%;
+  color: #334A5F;
+  caret-color: #334A5F;
+  margin: 3px;
+}
+
+.message-here {
+  margin-top: 25px;
+}
+
+.entry-box {
+  margin: 30px auto;
+}
+
+.entry-box input {
+  border: 1px solid #00BB9A;
+  border-radius: 4px;
+  vertical-align: middle;
+  line-height: 3em;
+  padding: 0 10px;
+  width: 100%;
+  color: #334A5F;
+  caret-color: #334A5F;
+  box-shadow: 0 0 1px 1px #fff;
+}
+
+.active-change {
+	display: flex;
+	overflow: hidden;
+  margin: 30px 0 0 0;
+}
+
+.active-change input {
+	position: absolute !important;
+	clip: rect(0, 0, 0, 0);
+	height: 1px;
+	width: 1px;
+	border: 0;
+	overflow: hidden;
+}
+
+.active-change label {
+	background-color: #E6E6E6;
+	color: #334A5F;
+	font-size: 14px;
+	line-height: 1;
+	text-align: center;
+	padding: 8px 16px;
+	margin-right: -1px;
+	transition: all 0.1s ease-in-out;
+  border: 1px solid #CBCBCB;
+}
+
+.active-change label:hover {
+	cursor: pointer;
+}
+
+.active-change input:checked + label {
+	background-color: #F4F4F4;
+	box-shadow: none;
+}
+
+.active-change label:first-of-type {
+	border-radius: 4px 0 0 4px;
+}
+
+.active-change label:last-of-type {
+	border-radius: 0 4px 4px 0;
+}
+
+.todos {
+  overflow-y: scroll;
+  height: 550px;
+  scrollbar-width: none;
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+}
+
+.todos::-webkit-scrollbar {
+  width: 0 !important
+ }
+
+.nothing {
+  margin: 25px 0;
+  padding: 15px;
+  border: 1px solid #CBCBCB;
+  border-radius: 3px;
+  background-color: #F4F4F4;
+}
+
+.todo {
+  margin: 25px 0;
+  padding: 15px;
+  border: 1px solid #CBCBCB;
+  border-radius: 3px;
+  background-color: #F4F4F4;
+}
+
+.todo-body {
+  word-wrap: break-word;
+  color: #334A5F;
+}
+
+.todo-body a {
+  text-decoration: none;
+  color: #334A5F;
+}
+
+.todo-body a:hover {
+  text-decoration: underline;
+}
+
+.todo-time {
+  margin-top: 5px;
+  line-height: 2em;
+  font-size: 12px;
+  vertical-align: text-bottom;
+  opacity: 0.5;
+}
+
+.todo-options {
+  padding: 0;
+}
+
+.buttons {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 -5px;
+}
+
+.options {
+  margin: 0 10px;
+  width:10%;
+  height: 10%;
+}
+
+.icons {
+  color: #CBCBCB;
+  font-size: 28px;
+}
+
+.round {
+  position: relative;
+}
+
+.round label {
+  background-color: #CACACA;
+  border: 1px solid #CACACA;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 30px;
+  left: 30%;
+  position: absolute;
+  top: -3px;
+  width: 30px;
+}
+
+.round label:after {
+  border: 2px solid #ffffff;
+  border-top: none;
+  border-right: none;
+  content: "";
+  height: 6px;
+  left: 9px;
+  opacity: 0;
+  position: absolute;
+  top: 10px;
+  transform: rotate(-45deg);
+  width: 12px;
+}
+
+.round input[type="checkbox"] {
+  visibility: hidden;
+}
+
+.round input[type="checkbox"]:checked + label {
+  background-color:  #00BB9A;
+  border-color:  #00BB9A;
+}
+
+.round input[type="checkbox"] + label:after {
+  opacity: 1;
+}
+
+.digg_pagination {
+  display: none;
+}
+
+.loading-section {
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.loading-section p {
+  color: #334A5F;
+  margin-top: 15px;
+}
+
+.spinner-border {
+  width: 1rem;
+  height: 1rem;
+  color: #334A5F;
+  margin-top: 20px;
+}
+
+.back-to-index {
+  margin: 40px 0 20px 0;
+}
+
+#back-button {
+  text-decoration: none;
+  color: #404040;
+}
+
+#back-button:hover {
+  text-decoration: underline;
+  color: #404040;
+}
+
+.todo-detailed {
+  margin: 25px 0;
+  border: 1px solid #CBCBCB;
+  border-radius: 3px;
+  border-collapse: collapse;
+}
+
+.todo-full {
+  border-bottom: 1px solid #CBCBCB;
+  border-collapse: collapse;
+  background-color: #FFFFFF;
+  padding: 20px;
+  background-color: white;
+}
+
+.comment-body {
+  word-wrap: break-word;
+}
+
+.close-button {
+  padding-left: 20px;
+  text-align: right;
+}
+
+.todo-det-time{
+  margin: 5px 0 15px 0;
+  line-height: 2em;
+  font-size: 16px;
+  vertical-align: text-bottom;
+  opacity: 0.5;
+}
+
+.task-bar {
+  padding-right: 0;
+  margin: 0 0 15px 0;
+}
+
+.task-bar p {
+  color: #334A5F;
+  margin: 0 0 5px 0;
+}
+
+.progress {
+  border-radius: 0px;
+  text-align: center;
+  background-color: #F4F4F4;
+}
+
+.progress-bar {
+  background-color: #00BB99;
+}
+
+.progress-percent {
+  position:absolute;
+  right:0;
+  left:0;
+  color: #33495C;
+  font-weight: bold;
+}
+
+.show_pointer {
+  width: auto;
+  background-color: lightgrey;
+  color: #000;
+  text-align: center;
+  border-radius: 5px;
+  padding: 2px 5px;
+  font-weight: bold;
+}
+
+.progress .show_pointer {
+    display:none;
+}
+.progress:hover .show_pointer {
+    display:block;
+    position:fixed;
+    overflow:hidden;
+}
+
+.active-button {
+  top: 25px;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+
+ */
+
+ 
+ body {
+   background-color: #E7E7E7;
+ }
+
+ .container {
+   max-width: 700px;
+ }
+
+ .top-section{
+   margin-top: 20px;
+ }
+
+ .login_bar {
+   color: #989898;
+   margin-left: 40px;
+ }
+
+
+ .login_bar:hover {
+   color: #404040;
+   text-decoration: none;
+ }
+
+ .nav-section {
+   margin : 25px 0 ;
+ }
+
+ .icon-section {
+   margin: 10px 0 0 0 ;
+   text-align: center;
+ }

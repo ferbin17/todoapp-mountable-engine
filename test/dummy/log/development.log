@@ -1,0 +1,309 @@
+  [1m[35m (811.7ms)[0m  [1m[35mCREATE DATABASE "dummy_development" ENCODING = 'unicode'[0m
+  [1m[35m (719.7ms)[0m  [1m[35mCREATE DATABASE "dummy_test" ENCODING = 'unicode'[0m
+  [1m[35m (115.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (78.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1721091371569202325)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateTodoappTodos (20201025032434)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (127.8ms)[0m  [1m[35mCREATE TABLE "todoapp_todos" ("id" bigserial primary key, "body" character varying, "datetime" timestamp, "completion_status" bigint DEFAULT 0 NOT NULL, "active" boolean DEFAULT TRUE, "position" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201025032434"]]
+  [1m[35m (12.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTodoappComments (20201025032855)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (59.0ms)[0m  [1m[35mCREATE TABLE "todoapp_comments" ("id" bigserial primary key, "body" character varying, "todo_id" bigint, "user_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (73.3ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_comments_on_todo_id" ON "todoapp_comments"  ("todo_id")[0m
+  [1m[35m (26.8ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_comments_on_user_id" ON "todoapp_comments"  ("user_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201025032855"]]
+  [1m[35m (12.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTodoappShares (20201025032907)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (41.3ms)[0m  [1m[35mCREATE TABLE "todoapp_shares" ("id" bigserial primary key, "todo_id" bigint, "user_id" bigint, "position" bigint DEFAULT 0 NOT NULL, "is_owner" boolean DEFAULT FALSE NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (36.2ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_shares_on_todo_id" ON "todoapp_shares"  ("todo_id")[0m
+  [1m[35m (37.0ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_shares_on_user_id" ON "todoapp_shares"  ("user_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201025032907"]]
+  [1m[35m (15.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTodoappUsers (20201025032913)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (73.4ms)[0m  [1m[35mCREATE TABLE "todoapp_users" ("id" bigserial primary key, "username" character varying, "email_id" character varying, "password_salt" character varying, "hashed_password" character varying, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "confirmation_token" character varying, "confirmed_at" timestamp, "confirmation_sent_at" timestamp, "failed_attempts" integer DEFAULT 0, "unlock_token" character varying, "locked_at" timestamp, "phone_no" character varying, "user_detail_id" integer, "is_admin" boolean DEFAULT FALSE, "is_seller" boolean DEFAULT FALSE, "is_active" boolean DEFAULT TRUE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_email_id" ON "users"  ("email_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(1721091371569202325)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1721091371569202325)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateTodoappUsers (20201025032913)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (145.6ms)[0m  [1m[35mCREATE TABLE "todoapp_users" ("id" bigserial primary key, "username" character varying, "email_id" character varying, "password_salt" character varying, "hashed_password" character varying, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "confirmation_token" character varying, "confirmed_at" timestamp, "confirmation_sent_at" timestamp, "failed_attempts" integer DEFAULT 0, "unlock_token" character varying, "locked_at" timestamp, "phone_no" character varying, "user_detail_id" integer, "is_admin" boolean DEFAULT FALSE, "is_seller" boolean DEFAULT FALSE, "is_active" boolean DEFAULT TRUE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_email_id" ON "users"  ("email_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(1721091371569202325)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1721091371569202325)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateTodoappUsers (20201025032913)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (96.6ms)[0m  [1m[35mCREATE TABLE "todoapp_users" ("id" bigserial primary key, "username" character varying, "email_id" character varying, "password_salt" character varying, "hashed_password" character varying, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "confirmation_token" character varying, "confirmed_at" timestamp, "confirmation_sent_at" timestamp, "failed_attempts" integer DEFAULT 0, "unlock_token" character varying, "locked_at" timestamp, "phone_no" character varying, "user_detail_id" integer, "is_admin" boolean DEFAULT FALSE, "is_seller" boolean DEFAULT FALSE, "is_active" boolean DEFAULT TRUE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_todoapp_todos_on_email_id" ON "todoapp_todos"  ("email_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(1721091371569202325)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1721091371569202325)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateTodoappUsers (20201025032913)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (96.3ms)[0m  [1m[35mCREATE TABLE "todoapp_users" ("id" bigserial primary key, "username" character varying, "email_id" character varying, "password_salt" character varying, "hashed_password" character varying, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "confirmation_token" character varying, "confirmed_at" timestamp, "confirmation_sent_at" timestamp, "failed_attempts" integer DEFAULT 0, "unlock_token" character varying, "locked_at" timestamp, "phone_no" character varying, "user_detail_id" integer, "is_admin" boolean DEFAULT FALSE, "is_seller" boolean DEFAULT FALSE, "is_active" boolean DEFAULT TRUE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (26.9ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_todoapp_users_on_email_id" ON "todoapp_users"  ("email_id")[0m
+  [1m[35m (36.3ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_todoapp_users_on_reset_password_token" ON "todoapp_users"  ("reset_password_token")[0m
+  [1m[35m (36.5ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_todoapp_users_on_confirmation_token" ON "todoapp_users"  ("confirmation_token")[0m
+  [1m[35m (36.9ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_todoapp_users_on_unlock_token" ON "todoapp_users"  ("unlock_token")[0m
+  [1m[36mprimary::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201025032913"]]
+  [1m[35m (10.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTodoappUserDetails (20201025043138)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (69.5ms)[0m  [1m[35mCREATE TABLE "todoapp_user_details" ("id" bigserial primary key, "user_id" integer, "full_name" character varying, "email_id" character varying, "phone_no" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201025043138"]]
+  [1m[35m (10.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-10-25 04:45:50.369837"], ["updated_at", "2020-10-25 04:45:50.369837"]]
+  [1m[35m (6.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(1721091371569202325)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (240.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "dummy_development"[0m
+  [1m[35m (227.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS "dummy_test"[0m
+  [1m[35m (570.1ms)[0m  [1m[35mCREATE DATABASE "dummy_development" ENCODING = 'unicode'[0m
+  [1m[35m (675.5ms)[0m  [1m[35mCREATE DATABASE "dummy_test" ENCODING = 'unicode'[0m
+  [1m[35m (88.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (80.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1721091371569202325)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateTodoappTodos (20201025032434)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (70.6ms)[0m  [1m[35mCREATE TABLE "todoapp_todos" ("id" bigserial primary key, "body" character varying, "datetime" timestamp, "completion_status" bigint DEFAULT 0 NOT NULL, "active" boolean DEFAULT TRUE, "position" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201025032434"]]
+  [1m[35m (15.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTodoappComments (20201025032855)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (85.4ms)[0m  [1m[35mCREATE TABLE "todoapp_comments" ("id" bigserial primary key, "body" character varying, "todoapp_todo_id" bigint, "todoapp_user_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (31.1ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_comments_on_todoapp_todo_id" ON "todoapp_comments"  ("todoapp_todo_id")[0m
+  [1m[35m (28.7ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_comments_on_todoapp_user_id" ON "todoapp_comments"  ("todoapp_user_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201025032855"]]
+  [1m[35m (14.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTodoappShares (20201025032907)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (39.1ms)[0m  [1m[35mCREATE TABLE "todoapp_shares" ("id" bigserial primary key, "todoapp_todo_id" bigint, "todoapp_user_id" bigint, "position" bigint DEFAULT 0 NOT NULL, "is_owner" boolean DEFAULT FALSE NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (28.2ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_shares_on_todoapp_todo_id" ON "todoapp_shares"  ("todoapp_todo_id")[0m
+  [1m[35m (28.6ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_shares_on_todoapp_user_id" ON "todoapp_shares"  ("todoapp_user_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201025032907"]]
+  [1m[35m (13.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTodoappUsers (20201025032913)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (70.9ms)[0m  [1m[35mCREATE TABLE "todoapp_users" ("id" bigserial primary key, "username" character varying, "email_id" character varying, "password_salt" character varying, "hashed_password" character varying, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "confirmation_token" character varying, "confirmed_at" timestamp, "confirmation_sent_at" timestamp, "failed_attempts" integer DEFAULT 0, "unlock_token" character varying, "locked_at" timestamp, "phone_no" character varying, "user_detail_id" integer, "is_admin" boolean DEFAULT FALSE, "is_seller" boolean DEFAULT FALSE, "is_active" boolean DEFAULT TRUE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (35.3ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_todoapp_users_on_email_id" ON "todoapp_users"  ("email_id")[0m
+  [1m[35m (28.4ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_todoapp_users_on_reset_password_token" ON "todoapp_users"  ("reset_password_token")[0m
+  [1m[35m (29.5ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_todoapp_users_on_confirmation_token" ON "todoapp_users"  ("confirmation_token")[0m
+  [1m[35m (28.6ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_todoapp_users_on_unlock_token" ON "todoapp_users"  ("unlock_token")[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201025032913"]]
+  [1m[35m (10.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTodoappUserDetails (20201025043138)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (69.5ms)[0m  [1m[35mCREATE TABLE "todoapp_user_details" ("id" bigserial primary key, "user_id" integer, "full_name" character varying, "email_id" character varying, "phone_no" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201025043138"]]
+  [1m[35m (8.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-10-25 04:54:04.069195"], ["updated_at", "2020-10-25 04:54:04.069195"]]
+  [1m[35m (7.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_advisory_unlock(1721091371569202325)[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTodoapp::User Load (0.4ms)[0m  [1m[34mSELECT "todoapp_users".* FROM "todoapp_users" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (331.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "dummy_development"[0m
+  [1m[35m (436.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "dummy_test"[0m
+  [1m[35m (1343.6ms)[0m  [1m[35mCREATE DATABASE "dummy_development" ENCODING = 'unicode'[0m
+  [1m[35m (1229.0ms)[0m  [1m[35mCREATE DATABASE "dummy_test" ENCODING = 'unicode'[0m
+  [1m[35m (89.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (97.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1721091371569202325)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateTodoappTodos (20201025032434)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (88.3ms)[0m  [1m[35mCREATE TABLE "todoapp_todos" ("id" bigserial primary key, "body" character varying, "datetime" timestamp, "completion_status" bigint DEFAULT 0 NOT NULL, "active" boolean DEFAULT TRUE, "position" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201025032434"]]
+  [1m[35m (8.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTodoappComments (20201025032855)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (78.6ms)[0m  [1m[35mCREATE TABLE "todoapp_comments" ("id" bigserial primary key, "body" character varying, "todoapp_todo_id" bigint, "todoapp_user_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (35.1ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_comments_on_todoapp_todo_id" ON "todoapp_comments"  ("todoapp_todo_id")[0m
+  [1m[35m (51.1ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_comments_on_todoapp_user_id" ON "todoapp_comments"  ("todoapp_user_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201025032855"]]
+  [1m[35m (10.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTodoappShares (20201025032907)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (35.4ms)[0m  [1m[35mCREATE TABLE "todoapp_shares" ("id" bigserial primary key, "todoapp_todo_id" bigint, "todoapp_user_id" bigint, "position" bigint DEFAULT 0 NOT NULL, "is_owner" boolean DEFAULT FALSE NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (45.7ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_shares_on_todoapp_todo_id" ON "todoapp_shares"  ("todoapp_todo_id")[0m
+  [1m[35m (36.9ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_shares_on_todoapp_user_id" ON "todoapp_shares"  ("todoapp_user_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201025032907"]]
+  [1m[35m (11.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTodoappUsers (20201025032913)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (76.6ms)[0m  [1m[35mCREATE TABLE "todoapp_users" ("id" bigserial primary key, "username" character varying, "email_id" character varying, "password_salt" character varying, "hashed_password" character varying, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "confirmation_token" character varying, "confirmed_at" timestamp, "confirmation_sent_at" timestamp, "failed_attempts" integer DEFAULT 0, "unlock_token" character varying, "locked_at" timestamp, "phone_no" character varying, "user_detail_id" integer, "is_admin" boolean DEFAULT FALSE, "is_seller" boolean DEFAULT FALSE, "is_active" boolean DEFAULT TRUE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (28.3ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_users_on_username" ON "todoapp_users"  ("username")[0m
+  [1m[35m (28.8ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_users_on_email_id" ON "todoapp_users"  ("email_id")[0m
+  [1m[35m (36.4ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_users_on_reset_password_token" ON "todoapp_users"  ("reset_password_token")[0m
+  [1m[35m (28.8ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_users_on_unlock_token" ON "todoapp_users"  ("unlock_token")[0m
+  [1m[35m (1.9ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(1721091371569202325)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1721091371569202325)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateTodoappUsers (20201025032913)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (369.7ms)[0m  [1m[35mCREATE TABLE "todoapp_users" ("id" bigserial primary key, "username" character varying, "email_id" character varying, "password_salt" character varying, "hashed_password" character varying, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "confirmation_token" character varying, "confirmed_at" timestamp, "confirmation_sent_at" timestamp, "failed_attempts" integer DEFAULT 0, "unlock_token" character varying, "locked_at" timestamp, "phone_no" character varying, "user_detail_id" integer, "is_admin" boolean DEFAULT FALSE, "is_seller" boolean DEFAULT FALSE, "is_active" boolean DEFAULT TRUE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (646.4ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_users_on_username" ON "todoapp_users"  ("username")[0m
+  [1m[35m (86.8ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_users_on_email_id" ON "todoapp_users"  ("email_id")[0m
+  [1m[35m (44.2ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_users_on_reset_password_token" ON "todoapp_users"  ("reset_password_token")[0m
+  [1m[35m (46.8ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_users_on_unlock_token" ON "todoapp_users"  ("unlock_token")[0m
+  [1m[36mprimary::SchemaMigration Create (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201025032913"]]
+  [1m[35m (24.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTodoappUserDetails (20201025043138)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (127.5ms)[0m  [1m[35mCREATE TABLE "todoapp_user_details" ("id" bigserial primary key, "user_id" integer, "full_name" character varying, "email_id" character varying, "phone_no" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201025043138"]]
+  [1m[35m (8.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-10-25 05:09:07.966637"], ["updated_at", "2020-10-25 05:09:07.966637"]]
+  [1m[35m (18.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(1721091371569202325)[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (940.7ms)[0m  [1m[35mDROP DATABASE IF EXISTS "dummy_development"[0m
+  [1m[35m (926.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "dummy_test"[0m
+  [1m[35m (3064.1ms)[0m  [1m[35mCREATE DATABASE "dummy_development" ENCODING = 'unicode'[0m
+  [1m[35m (2336.9ms)[0m  [1m[35mCREATE DATABASE "dummy_test" ENCODING = 'unicode'[0m
+  [1m[35m (155.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (190.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1721091371569202325)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateTodoappTodos (20201025032434)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (100.0ms)[0m  [1m[35mCREATE TABLE "todoapp_todos" ("id" bigserial primary key, "body" character varying, "datetime" timestamp, "completion_status" bigint DEFAULT 0 NOT NULL, "active" boolean DEFAULT TRUE, "position" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201025032434"]]
+  [1m[35m (16.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTodoappComments (20201025032855)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (182.1ms)[0m  [1m[35mCREATE TABLE "todoapp_comments" ("id" bigserial primary key, "body" character varying, "todoapp_todo_id" bigint, "todoapp_user_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (117.5ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_comments_on_todoapp_todo_id" ON "todoapp_comments"  ("todoapp_todo_id")[0m
+  [1m[35m (121.2ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_comments_on_todoapp_user_id" ON "todoapp_comments"  ("todoapp_user_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201025032855"]]
+  [1m[35m (14.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTodoappShares (20201025032907)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (59.4ms)[0m  [1m[35mCREATE TABLE "todoapp_shares" ("id" bigserial primary key, "todoapp_todo_id" bigint, "todoapp_user_id" bigint, "position" bigint DEFAULT 0 NOT NULL, "is_owner" boolean DEFAULT FALSE NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (80.9ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_shares_on_todoapp_todo_id" ON "todoapp_shares"  ("todoapp_todo_id")[0m
+  [1m[35m (36.9ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_shares_on_todoapp_user_id" ON "todoapp_shares"  ("todoapp_user_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201025032907"]]
+  [1m[35m (14.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTodoappUsers (20201025032913)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (119.6ms)[0m  [1m[35mCREATE TABLE "todoapp_users" ("id" bigserial primary key, "username" character varying, "email_id" character varying, "password_salt" character varying, "hashed_password" character varying, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "confirmation_token" character varying, "confirmed_at" timestamp, "confirmation_sent_at" timestamp, "failed_attempts" integer DEFAULT 0, "unlock_token" character varying, "locked_at" timestamp, "phone_no" character varying, "user_detail_id" integer, "is_admin" boolean DEFAULT FALSE, "is_seller" boolean DEFAULT FALSE, "is_active" boolean DEFAULT TRUE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (79.4ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_users_on_username" ON "todoapp_users"  ("username")[0m
+  [1m[35m (45.2ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_users_on_email_id" ON "todoapp_users"  ("email_id")[0m
+  [1m[35m (104.8ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_users_on_reset_password_token" ON "todoapp_users"  ("reset_password_token")[0m
+  [1m[35m (52.0ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_users_on_unlock_token" ON "todoapp_users"  ("unlock_token")[0m
+  [1m[36mprimary::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201025032913"]]
+  [1m[35m (11.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTodoappUserDetails (20201025043138)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (100.4ms)[0m  [1m[35mCREATE TABLE "todoapp_user_details" ("id" bigserial primary key, "user_id" integer, "full_name" character varying, "email_id" character varying, "phone_no" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201025043138"]]
+  [1m[35m (11.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-10-25 05:09:19.832664"], ["updated_at", "2020-10-25 05:09:19.832664"]]
+  [1m[35m (6.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_advisory_unlock(1721091371569202325)[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (427.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "dummy_development"[0m
+  [1m[35m (345.7ms)[0m  [1m[35mDROP DATABASE IF EXISTS "dummy_test"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE DATABASE "my_website" ENCODING = 'unicode'[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE DATABASE "my_website" ENCODING = 'unicode'[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7082848356648732255)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateTodoappTodos (20201025032434)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (91.3ms)[0m  [1m[35mCREATE TABLE "todoapp_todos" ("id" bigserial primary key, "body" character varying, "datetime" timestamp, "completion_status" bigint DEFAULT 0 NOT NULL, "active" boolean DEFAULT TRUE, "position" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201025032434"]]
+  [1m[35m (12.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTodoappComments (20201025032855)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (66.8ms)[0m  [1m[35mCREATE TABLE "todoapp_comments" ("id" bigserial primary key, "body" character varying, "todoapp_todo_id" bigint, "todoapp_user_id" bigint, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (35.7ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_comments_on_todoapp_todo_id" ON "todoapp_comments"  ("todoapp_todo_id")[0m
+  [1m[35m (37.0ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_comments_on_todoapp_user_id" ON "todoapp_comments"  ("todoapp_user_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201025032855"]]
+  [1m[35m (11.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTodoappShares (20201025032907)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (33.6ms)[0m  [1m[35mCREATE TABLE "todoapp_shares" ("id" bigserial primary key, "todoapp_todo_id" bigint, "todoapp_user_id" bigint, "position" bigint DEFAULT 0 NOT NULL, "is_owner" boolean DEFAULT FALSE NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (45.1ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_shares_on_todoapp_todo_id" ON "todoapp_shares"  ("todoapp_todo_id")[0m
+  [1m[35m (28.5ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_shares_on_todoapp_user_id" ON "todoapp_shares"  ("todoapp_user_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201025032907"]]
+  [1m[35m (10.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTodoappUsers (20201025032913)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (68.7ms)[0m  [1m[35mCREATE TABLE "todoapp_users" ("id" bigserial primary key, "username" character varying, "email_id" character varying, "password_salt" character varying, "hashed_password" character varying, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "confirmation_token" character varying, "confirmed_at" timestamp, "confirmation_sent_at" timestamp, "failed_attempts" integer DEFAULT 0, "unlock_token" character varying, "locked_at" timestamp, "phone_no" character varying, "user_detail_id" integer, "is_admin" boolean DEFAULT FALSE, "is_seller" boolean DEFAULT FALSE, "is_active" boolean DEFAULT TRUE, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (36.6ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_users_on_username" ON "todoapp_users"  ("username")[0m
+  [1m[35m (36.9ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_users_on_email_id" ON "todoapp_users"  ("email_id")[0m
+  [1m[35m (37.4ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_users_on_reset_password_token" ON "todoapp_users"  ("reset_password_token")[0m
+  [1m[35m (37.0ms)[0m  [1m[35mCREATE  INDEX  "index_todoapp_users_on_unlock_token" ON "todoapp_users"  ("unlock_token")[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201025032913"]]
+  [1m[35m (18.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTodoappUserDetails (20201025043138)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (69.5ms)[0m  [1m[35mCREATE TABLE "todoapp_user_details" ("id" bigserial primary key, "user_id" integer, "full_name" character varying, "email_id" character varying, "phone_no" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201025043138"]]
+  [1m[35m (8.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_advisory_unlock(7082848356648732255)[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (5009.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "my_website"[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (326.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "my_website"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP DATABASE IF EXISTS "my_website"[0m

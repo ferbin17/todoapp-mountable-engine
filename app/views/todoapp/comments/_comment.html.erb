@@ -1,0 +1,13 @@
+<% unless (comment.id).nil? %>
+  <div id = "<%= comment.id %>" class = "comment">
+    <div class = "comment-body" >
+        <p><%= raw comment.body %></p>
+    </div>
+    <div class = "comment-user-time" >
+      <p class = "comment-user"><%= comment.email_id %></p>
+      <p class= "comment-on">on</p>
+
+      <p class = "comment-time" ><%= format_time(comment.created_at) %></p>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,35 @@
+<% if params.key?(:active_status) %>
+  $(".search_todos").val('');
+<% end %>
+
+var count = $('.todo').length;
+if(count == 0){
+  $(".todos").html(`<% if @todos.empty? %><div class = "nothing">
+    Nothing to show</div><% else %>
+      <% @todos.each do |todo| %><%= render 'todo', todo: todo %>
+      <% end %><% end %>`);
+}else{
+  $(".todos").append(`<% if @todos.empty? %><div class = "nothing">
+    Nothing to show</div><% else %>
+      <% @todos.each do |todo| %><%= render 'todo', todo: todo %>
+      <% end %><% end %>`);
+}
+$(".digg_pagination").html(`<%= will_paginate @todos, page_links: false %>`);
+
+$('.pagination a').attr('data-remote', 'true');
+
+arrow_correction();
+
+<% if params.key?(:search) %>;
+  $("#active_status_active_only").prop("checked", false);
+  $("#active_status_inactive_only").prop("checked", false);
+<% end %>
+
+<% if params.key?(:search) && !params[:search].present? %>
+  $("#active_status_active_only").prop("checked", true);
+<% end %>
+
+if ($(".search_todos").val()) {
+  ($('.up').parent()).hide();
+  ($('.down').parent()).hide();
+};
