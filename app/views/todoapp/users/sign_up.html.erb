@@ -4,7 +4,7 @@
     </div>
     <div class="col-7 signup-field">
       <h2 class="dark-red">SIGN UP</h2>
-      <p>Sign Up to shop and explore Get Art</p>
+      <p>Sign Up to enter and explore Todoapp</p>
       <%= form_for(@user, url: sign_up_users_path, html: { onsubmit: "return validate(event)" }) do |f| %>
         <%= render partial: "error_messages", locals:{ user: @user} %>
         <% @step ||= :non %>
