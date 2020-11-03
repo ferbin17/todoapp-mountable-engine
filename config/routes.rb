@@ -18,5 +18,7 @@ Todoapp::Engine.routes.draw do
     resources :comments
   end
   resources :shares
+  
+  get '*unmatched_route', to: 'application#raise_not_found'
   root 'todos#index'
 end
